@@ -5,11 +5,14 @@ from aiogram.filters import Command
 from aiogram.types import Message
 import os
 import django
+from dotenv import load_dotenv
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
 django.setup()
 
-API_TOKEN = 'YOUR_BOT_TOKEN_HERE'
+load_dotenv()
+
+API_TOKEN = os.getenv("API_TOKEN")
 
 bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher()
